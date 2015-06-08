@@ -40,11 +40,11 @@ int main(int argc, const char *argv[])
 
     /* Define them with the following Language */
     mpca_lang(MPCA_LANG_DEFAULT,
-            "                                                               \
-            number      : /-?([0-9]+[.][0-9]+|(0|[1-9]+))/ ;                \
-            operator    : '+' | '-' | '*' | '/' | '%' | \"add\" | \"sub\" | \"mul\" | \"div\" | \"mod\" ;                                               \
-            expr        : <number> | '(' <operator> <expr>+ ')' ;           \
-            cLisp       : /^/ <operator> <expr>+ /$/ ;                      \
+            "                                                   \
+            number   : /-?[0-9]+/ ;                             \
+            operator : '+' | '-' | '*' | '/' ;                  \
+            expr     : <number> | '(' <operator> <expr>+ ')' ;  \
+            cLisp    : /^/ <operator> <expr>+ /$/ ;             \
             ",
             Number, Operator, Expr, CLisp);
 
