@@ -57,6 +57,8 @@ long eval(mpc_ast_t* t) {
         x = eval_op(x, op, eval(t->children[i]));
         i++;
     }
+
+    return x;
 }
 
 int main(int argc, const char *argv[])
@@ -79,7 +81,7 @@ int main(int argc, const char *argv[])
             Number, Operator, Expr, CLisp);
 
     /* Print Version and Exit Information */
-    puts("CLisp Version 0.0.0.0.2");
+    puts("CLisp Version 0.0.0.0.3");
     puts("CLisp is an lispy lisp implementation with C!");
     puts("Press Ctrl+c to Exit\n");
 
@@ -96,7 +98,8 @@ int main(int argc, const char *argv[])
         mpc_result_t r;
         if(mpc_parse("<stdin>", input, CLisp, &r)) {
             /* On success Print the AST */
-            mpc_ast_print(r.output);
+            long result = eval(r.output);
+            printf("%li\n",result);
             mpc_ast_delete(r.output);
         } else {
             /* Otherwise Print the Error */
